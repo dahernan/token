@@ -10,7 +10,7 @@ import (
 
 var (
 	secret = "secretForTesting"
-	id     = "12345678"
+	id     = "dahernan@test123.co.uk"
 )
 
 func TestValidToken(t *testing.T) {
