@@ -3,7 +3,7 @@ package token
 import (
 	"crypto/hmac"
 	"crypto/rand"
-	"crypto/sha1"
+	"crypto/sha512"
 	"crypto/subtle"
 	"encoding/base64"
 	"fmt"
@@ -102,7 +102,7 @@ func (tk *TokenHmacSha) generateAtTime(secret string, rnd string, id string, now
 	s := tk.secret
 	nanos := strconv.FormatInt(now.UnixNano(), 10)
 
-	h := hmac.New(sha1.New, []byte(s))
+	h := hmac.New(sha512.New512_256, []byte(s))
 	fmt.Fprintf(h, "%s.%s.%s", rnd, id, nanos)
 	hash := base64.URLEncoding.EncodeToString(h.Sum(nil))
 
